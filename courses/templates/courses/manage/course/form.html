@@ -1,0 +1,36 @@
+{% extends "base.html" %} {% load widget_tweaks %} {% block title %} 
+{% if object %} Edit course "{{object.title }}" 
+{% else %} Create a new course {%endif%} {% endblock %} {% block content %}
+<h2 class="shadow-sm">
+  {% if object %} Edit course "{{ object.title }}" {% else %} Create a new
+  course {% endif %}
+</h2>
+<div class="row">
+  <div class="module col-4 mx-auto">
+    <h2 class="text-center my-3">Course info</h2>
+    <form method="post" class="d-grid">
+      <div class="input-group mb-3 shadow">
+        <span class="input-group-text border-0" >Title</span>
+        {{ form.title.errors }} {{ form.title | add_class:"form-control border-0" }}
+      </div>
+      <div>
+        <form method="post" class="d-grid">{% csrf_token %}
+          <div class="input-group mb-3 shadow">
+            <span class="input-group-text border-0" >Subject</span>   
+      {{ form.subject.errors }} {{ form.subject | add_class:"form-select shadow h-100 border-0" }}
+    </div>
+    </div>
+    <div class="input-group my-3 shadow">
+      <span class="input-group-text border-0" >Slug</span>
+      {{ form.slug.errors }} {{ form.slug | add_class:"form-control border-0" }}
+    </div>
+    <div>
+  <div class="input-group mt-3 shadow">
+      <span class="input-group-text border-0 ">Overview</span>
+      {{ form.overview.errors }} {{ form.overview | add_class:"form-control border-0" }}
+      </div>
+      <p class="w-100 d-flex mt-5"><input type="submit" class="shadow w-75 mx-auto" value="Save course" /></p>
+    </form>
+  </div>
+</div>
+{% endblock %}
